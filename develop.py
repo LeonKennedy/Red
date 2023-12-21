@@ -50,7 +50,7 @@ def run(msg):
 
 if __name__ == '__main__':
     # run("hello, i like coffee")
-    # voice_to_video("/mnt/d4t/workspace/red/results/tts/tmp9gzqlbb3.wav")
+    voice_to_video("/mnt/d4t/workspace/red/results/tts/tmp2wq385nb.wav")
     # conversation_chain("hello, teacher")
-    tts("Hello, student! How may I assist you today? Please let me know your historical inquiry and I will do my best to provide an insightful response. Remember to provide specific details and context so that I can better understand the question. Thank you for choosing me as your history tutor!")
+    # tts("Hello, student! How may I assist you today? Please let me know your historical inquiry and I will do my best to provide an insightful response. Remember to provide specific details and context so that I can better understand the question. Thank you for choosing me as your history tutor!")
     # asyncio.run(conversation_chain("hello, teacher"))

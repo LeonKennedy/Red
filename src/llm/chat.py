@@ -8,6 +8,7 @@
 @time: 2023/12/20 14:11
 @desc:
 """
+import asyncio
 from typing import Sequence, Any, List
 
 from langchain.chains import LLMChain, ConversationChain
@@ -117,9 +118,19 @@ def _get_llm():
     return _llm
 
 
-def create_conversation_chain() -> RunnableSequence:
+_llm_Q = asyncio.Queue(maxsize=3)
+
+
+def init_llm_queue() -> asyncio.Queue:
+    _llm_Q.put_nowait(_get_llm())
+    print("[---]\n\n llm in queue \nTHis message only see once \n\n[---]")
+    return _llm_Q
+
+
+async def create_conversation_chain() -> RunnableSequence:
     prompt = create_prompt()
-    runnable = prompt | _get_llm()
+    llm = await _llm_Q.get()
+    runnable = prompt | llm
 
     # runnable2 = LLMChain(llm=_llm, prompt=prompt, verbose=True, memory=memory)
     # prompt = PromptTemplate(template=_template, input_variables=["history", "input"])

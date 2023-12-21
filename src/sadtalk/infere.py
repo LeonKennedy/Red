@@ -54,10 +54,12 @@ def init():
     return args
 
 
-def out_main(audio_path) -> str:
-    args = init()
-
-    return main(pic_path, audio_path, args)
+def _get_pic_path():
+    root = "/mnt/d4t/workspace/red/src/sadtalk/assets"
+    a = "people_0.png"
+    b = "daisi1.jpg"
+    c = "daisi2.jpg"
+    return os.path.join(root, a)
 
 
 class Avatar:
@@ -73,7 +75,7 @@ class Avatar:
         self.audio_to_coeff = Audio2Coeff(sadtalker_paths, device)
 
         self.animate_from_coeff = AnimateFromCoeff(sadtalker_paths, device)
-        self.pic_path = "/mnt/d4t/workspace/red/src/sadtalk/assets/people_0.png"
+        self.pic_path = _get_pic_path()
         self.args = args
         self.device = device
 
