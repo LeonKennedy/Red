@@ -19,10 +19,26 @@ doc: https://docs.chainlit.io/get-started/overview
 # SSL
 openssl req -newkey rsa:2048 -nodes -keyout rsa_private.key -x509 -days 799 -out cert.crt
 
-# Reference & model
-1. [TheBloke/Llama-2-7B-Chat-GGU](https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGUF#provided-files)
-2. [HuggingFaceH4/zephyr-7b-beta](https://huggingface.co/HuggingFaceH4/zephyr-7b-beta)
-3. [TheBloke/zephyr-7B-beta-AWQ](https://huggingface.co/TheBloke/zephyr-7B-beta-AWQ)
-4. [abetlen/llama-cpp-python](https://github.com/abetlen/llama-cpp-python)
-5. [openai/wishper](https://github.com/openai/whisper)
-6. [llama.cpp](https://github.com/ggerganov/llama.cpp)
+# model
+## zephyr-7b-beta -> Mistral-7B-v0.1(4096)
+zephyr-7b-beta -> Mistral-7B-v0.1(4096)
+
+
+1. [HuggingFaceH4/zephyr-7b-beta](https://huggingface.co/HuggingFaceH4/zephyr-7b-beta)
+2. [TheBloke/zephyr-7B-beta-AWQ](https://huggingface.co/TheBloke/zephyr-7B-beta-AWQ)
+
+## Mixtral-8x7B-Instruct-v0.1
+1. [mistralai/Mixtral-8x7B-Instruct-v0.1](https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1)
+2. [TheBloke/Mixtral-8x7B-Instruct-v0.1-GGUF](https://huggingface.co/TheBloke/Mixtral-8x7B-Instruct-v0.1-GGUF)
+
+
+## Yi
+
+1. https://huggingface.co/TheBloke/Nous-Hermes-2-Yi-34B-GGUF
+
+# Reference
+1. [TheBloke/Llama-2-7B-Chat-GGUF](https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGUF#provided-files)
+2. [abetlen/llama-cpp-python](https://github.com/abetlen/llama-cpp-python)
+3. [openai/wishper](https://github.com/openai/whisper)
+4. [llama.cpp](https://github.com/ggerganov/llama.cpp)
+5. [Replicate](https://replicate.com/)

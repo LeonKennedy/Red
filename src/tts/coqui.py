@@ -24,10 +24,6 @@ def _get_tts():
     return _tts
 
 
-# def inference(text: str):
-#     return tts.tts(text, speaker=tts.speakers[0])
-
-
 def inference_to_file(text: str) -> tempfile.NamedTemporaryFile:
     tmp_wav = tempfile.NamedTemporaryFile(suffix=".wav", dir="results/tts", delete=False)
     tts = _get_tts()
