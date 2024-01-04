@@ -33,8 +33,7 @@ zephyr-7b-beta -> Mistral-7B-v0.1(4096)
 
 
 ## Yi
-
-1. https://huggingface.co/TheBloke/Nous-Hermes-2-Yi-34B-GGUF
+1. [TheBloke/Nous-Hermes-2-Yi-34B-GGUF](https://huggingface.co/TheBloke/Nous-Hermes-2-Yi-34B-GGUF)
 
 # Reference
 1. [TheBloke/Llama-2-7B-Chat-GGUF](https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGUF#provided-files)

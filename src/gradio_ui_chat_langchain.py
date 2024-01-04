@@ -13,6 +13,7 @@ from functools import lru_cache
 from typing import List
 
 from src.llm.chains import ZephyrChatPromptTemplate, create_llm, RoleFilterOutputParser, HalfJsonOutputParser
+from src.llm.chains import get_yi_runnable
 
 DEFAULT_SYSTEM_TEMPLATE = """You're an AI assistant to check spelling in English, provide accurate and precise corrections. 
 User will give some English text, you need to check every word in the text, and return all spelling errors in a list of JSON format.
@@ -60,3 +61,38 @@ def chat(system_prompt: str, msg: str) -> str:
 def list_to_json(list: List) -> str:
     o = json.dumps(list, ensure_ascii=False)
     return f"```json\n{o}\n```\n"
+
+
+### above deprecated
+
+def zephyr_chat(system_prompt: str, history: List, msg: str) -> str:
+    pass
+
+
+def mixtral_chat(history: List, msg: str) -> str:
+    pass
+
+
+"""
+<|im_start|>system
+{system_message}<|im_end|>
+<|im_start|>user
+{prompt}<|im_end|>
+<|im_start|>assistant
+"""
+
+
+def yi_chat(system_prompt: str, history: List, msg: str) -> str:
+    format_history = ""
+    for u, a in history:
+        tmp = f"<|im_start|>user\n{u}<|im_end|>\n<|im_start|>assistant\n{a}<|im_end|>\n"
+        format_history += tmp
+
+    runnable = get_yi_runnable()
+    yield from runnable.stream(input={"system_prompt": system_prompt, "history": format_history, "msg": msg})
+
+
+if __name__ == '__main__':
+    for i in yi_chat("hello, teacher! i am a student for learning english.", [],
+                     "hello, teacher! i am a student for learning english."):
+        print(i)

@@ -8,3 +8,5 @@
 @time: 2023/12/13 18:05
 @desc:
 """
+
+from .gradio_ui_chat_langchain import yi_chat

@@ -20,9 +20,7 @@ from langchain_core.runnables import RunnableSequence
 
 from .llm import create_mixtral_llm
 
-'''
-<s> [INST] Instruction [/INST] Model answer</s> [INST] Follow-up instruction [/INST]
-'''
+
 
 
 def _get_buffer_string(messages: Sequence[BaseMessage]) -> str:

@@ -8,13 +8,11 @@
 @time: 2024/1/2 17:32
 @desc:
 """
-from langchain_core.prompts import HumanMessagePromptTemplate
-
 from .zephyr_chat_prompt_template import ZephyrChatPromptTemplate
 from .word_spell import get_spell_check_runnable, HalfJsonOutputParser
-from .llm import create_llm, create_zephyr_llm, create_mixtral_llm
+from .llm import create_llm, create_zephyr_llm, create_mixtral_llm, create_yi_llm, get_llm_by_name
 from .parser import RoleFilterOutputParser
-from .mixtral_instruct_template import MixtralInstructPromptTemplate
+from .prompt import create_mixtral_prompt, create_yi_prompt
 
 
 def get_zephyr_runnable():
@@ -22,6 +20,12 @@ def get_zephyr_runnable():
 
 
 def get_mixtral_runnable(verbose=False):
-    prompt = MixtralInstructPromptTemplate.from_template("<s> {history} </s> [INST] {instruction} [/INST]")
+    prompt = create_mixtral_prompt()
     llm = create_mixtral_llm(verbose=verbose)
+    return prompt | llm
+
+
+def get_yi_runnable(verbose=True):
+    prompt = create_yi_prompt()
+    llm = get_llm_by_name("yi", verbose=verbose)
     return prompt | llm

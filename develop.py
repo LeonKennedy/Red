@@ -17,7 +17,7 @@ from src.llm import create_conversation_chain, create_prompt
 from src.tts import inference_to_file, split_inference_to_file
 from src.sadtalk import get_avatar
 from src.llm.chains import create_llm, get_spell_check_runnable
-from src.llm.chains import get_mixtral_runnable
+from src.llm.chains import get_mixtral_runnable, get_yi_runnable
 
 
 def conversation_prompt():
@@ -65,6 +65,6 @@ if __name__ == '__main__':
     # asyncio.run(conversation_chain("hello, teacher"))
     # word_spell_checker()
 
-    runnable = get_mixtral_runnable(verbose=True)
-    out = runnable.invoke({"instruction": "hello, teacher? what is best food for dinner?"})
+    runnable = get_yi_runnable(verbose=True)
+    out = runnable.invoke({"msg": "hello, teacher? what is best food for dinner?", "history": []})
     print(1)

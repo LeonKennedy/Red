@@ -14,6 +14,7 @@ import gradio as gr
 from enum import StrEnum
 
 from src.llm.chains import get_mixtral_runnable
+from src import yi_chat
 
 _choices = [
     ("zephyr-7b-beta.Q8_0", "7B/zephyr-7b-beta.Q8_0.gguf"),
@@ -24,9 +25,10 @@ _choices = [
 class SelectedModel(StrEnum):
     ZEPHYR = "zephyr-7b-beta.Q8_0"
     MIXTRAL = "mixtral-8x7b-instruct-v0.1.Q4_0"
+    YI = "nous-hermes-2-yi-34b.Q4_0.gguf"
 
 
-_model = SelectedModel.MIXTRAL
+_model = SelectedModel.YI
 
 
 def format_history(history: List[Tuple[str, str]]) -> str:
@@ -43,6 +45,8 @@ def chat(system_prompt: str, history: List[Tuple[str, str]]):
     elif _model == SelectedModel.MIXTRAL:
         runnable = get_mixtral_runnable()
         yield from runnable.stream({"instruction": history[-1][0], "history": format_history(history[:-1])})
+    elif _model == SelectedModel.YI:
+        yield from yi_chat(system_prompt, history[:-1], history[-1][0])
     else:
         raise NotImplementedError("Unknown model")
 
@@ -74,4 +78,5 @@ with gr.Blocks() as demo:
         bot, [system_prompt, chatbot], chatbot)
 
 if __name__ == "__main__":
+    print("start use:", _model)
     demo.queue().launch()
