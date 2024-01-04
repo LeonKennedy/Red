@@ -12,8 +12,8 @@ import json
 from functools import lru_cache
 from typing import List
 
-from src.llm.chains import ZephyrChatPromptTemplate, create_llm, RoleFilterOutputParser, HalfJsonOutputParser
-from src.llm.chains import get_yi_runnable
+from src.llm.chains import ZephyrChatPromptTemplate, RoleFilterOutputParser, HalfJsonOutputParser
+from src.llm.chains import get_yi_runnable, get_mixtral_runnable, get_zephyr_runnable
 
 DEFAULT_SYSTEM_TEMPLATE = """You're an AI assistant to check spelling in English, provide accurate and precise corrections. 
 User will give some English text, you need to check every word in the text, and return all spelling errors in a list of JSON format.
@@ -64,13 +64,38 @@ def list_to_json(list: List) -> str:
 
 
 ### above deprecated
+"""
+<|system|>
+</s>
+<|user|>
+{prompt}</s>
+<|assistant|>
+"""
+
 
 def zephyr_chat(system_prompt: str, history: List, msg: str) -> str:
-    pass
+    format_history = ""
+    for u, a in history:
+        tmp = f"<|user|>\n{u}</s>\n<|assistant|>\n{a}\n"
+        format_history += tmp
+
+    runnable = get_zephyr_runnable()
+    yield from runnable.stream(input={"system_prompt": system_prompt, "history": format_history, "msg": msg})
+
+
+''' MIXTRAL
+<s> [INST] Instruction [/INST] Model answer</s> [INST] Follow-up instruction [/INST]
+'''
 
 
 def mixtral_chat(history: List, msg: str) -> str:
-    pass
+    format_history = ""
+    for u, a in history:
+        tmp = f"[INST] {u} [/INST] {a}"
+        format_history += tmp
+
+    runnable = get_mixtral_runnable()
+    yield from runnable.stream(input={"history": format_history, "msg": msg})
 
 
 """

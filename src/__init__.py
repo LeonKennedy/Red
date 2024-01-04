@@ -9,4 +9,4 @@
 @desc:
 """
 
-from .gradio_ui_chat_langchain import yi_chat
+from .gradio_ui_chat_langchain import yi_chat, mixtral_chat, zephyr_chat

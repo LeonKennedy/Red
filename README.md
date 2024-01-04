@@ -22,8 +22,6 @@ openssl req -newkey rsa:2048 -nodes -keyout rsa_private.key -x509 -days 799 -out
 # model
 ## zephyr-7b-beta -> Mistral-7B-v0.1(4096)
 zephyr-7b-beta -> Mistral-7B-v0.1(4096)
-
-
 1. [HuggingFaceH4/zephyr-7b-beta](https://huggingface.co/HuggingFaceH4/zephyr-7b-beta)
 2. [TheBloke/zephyr-7B-beta-AWQ](https://huggingface.co/TheBloke/zephyr-7B-beta-AWQ)
 

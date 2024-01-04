@@ -16,7 +16,6 @@ from langchain_core.messages import get_buffer_string, BaseMessage, HumanMessage
 from langchain_core.prompts import PromptTemplate, ChatPromptTemplate, MessagesPlaceholder, PipelinePromptTemplate, \
     HumanMessagePromptTemplate
 from langchain_core.runnables import RunnableSequence
-from .chains import ZephyrChatPromptTemplate, create_llm
 
 
 def create_prompt():

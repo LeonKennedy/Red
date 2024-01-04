@@ -27,7 +27,7 @@ def create_llm(model_path: str, stop: List, temperature=0.75, layers=20, verbose
         model_path=model_path,
         verbose=verbose
     )
-    print("created llm")
+    print("created llm, load:", model_path)
     return llm
 
 

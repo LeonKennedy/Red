@@ -16,7 +16,7 @@ import langchain as cl
 from src.llm import create_conversation_chain, create_prompt
 from src.tts import inference_to_file, split_inference_to_file
 from src.sadtalk import get_avatar
-from src.llm.chains import create_llm, get_spell_check_runnable
+from src.llm.chains import get_spell_check_runnable
 from src.llm.chains import get_mixtral_runnable, get_yi_runnable
 
 

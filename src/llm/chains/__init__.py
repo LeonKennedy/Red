@@ -10,18 +10,20 @@
 """
 from .zephyr_chat_prompt_template import ZephyrChatPromptTemplate
 from .word_spell import get_spell_check_runnable, HalfJsonOutputParser
-from .llm import create_llm, create_zephyr_llm, create_mixtral_llm, create_yi_llm, get_llm_by_name
+from .llm import create_zephyr_llm, create_mixtral_llm, create_yi_llm, get_llm_by_name
 from .parser import RoleFilterOutputParser
-from .prompt import create_mixtral_prompt, create_yi_prompt
+from .prompt import create_mixtral_prompt, create_yi_prompt, create_zephyr_prompt
 
 
-def get_zephyr_runnable():
-    pass
+def get_zephyr_runnable(verbose=False):
+    prompt = create_zephyr_prompt()
+    llm = get_llm_by_name("zephyr", verbose=verbose)
+    return prompt | llm
 
 
 def get_mixtral_runnable(verbose=False):
     prompt = create_mixtral_prompt()
-    llm = create_mixtral_llm(verbose=verbose)
+    llm = get_llm_by_name("mixtral", verbose=verbose)
     return prompt | llm
 
 

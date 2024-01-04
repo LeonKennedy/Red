@@ -14,7 +14,6 @@ from typing import List, Dict
 from langchain_core.output_parsers import BaseOutputParser
 from langchain_core.output_parsers.base import T
 
-from .llm import create_llm
 from .zephyr_chat_prompt_template import ZephyrChatPromptTemplate
 from .parser import RoleFilterOutputParser
 
